@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -23,3 +24,4 @@ class Evento(models.Model):
     event_final_date = models.DateTimeField()
     event_type = models.CharField(max_length=20,choices=EVENT_PLACE)
     thumbnail= models.CharField(max_length=2000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
