@@ -133,7 +133,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # REST
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
