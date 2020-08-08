@@ -42,7 +42,7 @@ class EventView(APIView):
             except:
                 return Response(status=status.HTTP_404_NOT_FOUND)
         else:
-            events = Evento.objects.filter(user=username)
+            events = Evento.objects.filter(user=username).order_by('-creation_time')
             if events:
                 events = EventSerializer(events, many=True)
                 return Response(events.data, status=status.HTTP_200_OK)
