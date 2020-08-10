@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.contrib.staticfiles import views
+from django.urls import path, include,re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('AdminEventos.urls')),
+    # re_path(r'^favicon.ico$', views.serve, {'path': 'favicon.ico'}, name='favicon'),
+    # re_path(r'^(?!api/).*$', views.serve, {'path': 'index.html'}, name='index'),
 ]

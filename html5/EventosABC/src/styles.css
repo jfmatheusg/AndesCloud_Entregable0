@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-toolbar {
+	 margin-bottom: 24px;
+}
+ .mat-toolbar a.menu {
+	 color: #fff;
+}
+ .mat-toolbar a.menu:hover, .mat-toolbar a.menu:link {
+	 color: #fff;
+	 text-decoration: none;
+}
+ .mat-toolbar .mat-raised-button {
+	 margin-left: 16px;
+}
+ .toolbar-spacer {
+	 flex: 1 1 auto;
+}
+ .mat-card {
+	 margin-bottom: 24px;
+}
+ .mat-card .app-img-top {
+	 margin-bottom: 8px;
+	 text-align: center;
+}
+ .mat-card .app-img-top img {
+	 max-height: 300px;
+	 max-width: 100%;
+	 object-fit: cover;
+}
+ .mat-form-field {
+	 width: 100%;
+}

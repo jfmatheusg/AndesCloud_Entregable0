@@ -35,6 +35,7 @@ class EventView(APIView):
 
         idEvent = self.kwargs.get("idEvent")
         username = Token.objects.get(key=request.auth.key).user
+
         if idEvent:
             try:
                 event = Evento.objects.get(user=username, id=idEvent)

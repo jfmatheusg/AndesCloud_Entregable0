@@ -9,6 +9,10 @@ verify_ssl = true
 djangorestframework = "*"
 django = "*"
 django-filter = "*"
+whitenoise = "*"
+django-cors-headers = "*"
+psycopg2-binary = "*"
+Pillow = "*"
 
 [requires]
 python_version = "3.6"
