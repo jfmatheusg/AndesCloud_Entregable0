@@ -23,6 +23,7 @@ import { ErrorRestComponent } from './services/error-rest/error-rest.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ErrorRestService} from './services/error-rest/error-rest.service';
 import { RegisterComponent } from './modules/register/register.component';
+import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 
 
@@ -34,6 +35,7 @@ import { RegisterComponent } from './modules/register/register.component';
     LoginComponent,
     ErrorRestComponent,
     RegisterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

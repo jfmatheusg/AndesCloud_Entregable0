@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserSignUpInterface } from 'src/app/interfaces/user-sign-up.interface';
-import { ErrorRestInterface } from 'src/app/interfaces/error-rest.interface';
+import { ErrorRestService } from '../../services/error-rest/error-rest.service';
 
 
 @Component({
@@ -12,7 +12,6 @@ import { ErrorRestInterface } from 'src/app/interfaces/error-rest.interface';
   templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
-  errorRest: ErrorRestInterface;
   signUpForm: FormGroup;
   loading = false;
   hide = true;
@@ -25,6 +24,7 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private errorDialogService: ErrorRestService,
   ) { }
 
   ngOnInit() {
@@ -35,9 +35,6 @@ export class RegisterComponent implements OnInit {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required]
     });
-
-    // reset login status
-    this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -60,7 +57,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let userSignUpData: UserSignUpInterface = this.signUpForm.value;
+    const userSignUpData: UserSignUpInterface = this.signUpForm.value;
 
     this.loading = true;
     this.authenticationService
@@ -68,11 +65,16 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.authenticationService.logout();
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.loading = false;
-          this.errorRest = error.error;
+          const data = {
+              reason: 'Su registro no fue exitoso. Reintente más tarde o contacte a soporte técnico',
+              status: '500'
+          };
+          this.errorDialogService.openDialog(data);
         }
       );
   }

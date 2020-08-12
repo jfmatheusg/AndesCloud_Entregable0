@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import {ErrorRestInterface} from '../../interfaces/error-rest.interface';
+import {ErrorRestService} from '../../services/error-rest/error-rest.service';
 
 
 
@@ -12,7 +13,6 @@ import {ErrorRestInterface} from '../../interfaces/error-rest.interface';
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-  errorRest: ErrorRestInterface;
   loginForm: FormGroup;
   loading = false;
   hide = true;
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private errorDialogService: ErrorRestService,
   ) { }
 
   ngOnInit() {
@@ -69,7 +70,11 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          this.errorRest = error.error;
+          const data = {
+              reason: 'Su usuario o contraseña son incorrectos',
+              status: '400'
+          };
+          this.errorDialogService.openDialog(data);
         });
   }
 

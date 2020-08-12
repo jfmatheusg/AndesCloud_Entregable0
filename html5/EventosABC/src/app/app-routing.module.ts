@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import {EventsComponent} from './modules/events/events.component';
 import {LoginComponent} from './modules/login/login.component';
 import {RegisterComponent} from './modules/register/register.component';
+import {PageNotFoundComponent} from './modules/page-not-found/page-not-found.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
 const routes: Routes = [
-  {path: 'events', component: EventsComponent},
+  {path: '', component: EventsComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent, },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

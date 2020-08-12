@@ -4,12 +4,14 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { UserSignUpInterface } from '../interfaces/user-sign-up.interface';
 import { UserSessionService } from './user-session.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   constructor(
     private http: HttpClient,
     public user: UserSessionService,
+    public router: Router,
   ) { }
 
   signUp(userInfo: UserSignUpInterface) {
@@ -45,5 +47,10 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.user.reset();
+    this.router.navigate(['login']);
+  }
+
+  isAuthenticated() {
+    return this.user.ok;
   }
 }
