@@ -24,6 +24,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ErrorRestService} from './services/error-rest/error-rest.service';
 import { RegisterComponent } from './modules/register/register.component';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
+import { CreateEventComponent } from './modules/createevent/createevent.component';
+import {MatSelectModule} from '@angular/material/select';
+import {NgxMatDatetimePickerModule} from '@angular-material-components/datetime-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
@@ -36,6 +41,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
     ErrorRestComponent,
     RegisterComponent,
     PageNotFoundComponent,
+    CreateEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,10 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
     MatInputModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatSelectModule,
+    NgxMatDatetimePickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     UserSessionService,

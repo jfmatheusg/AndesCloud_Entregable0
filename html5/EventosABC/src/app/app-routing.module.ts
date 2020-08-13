@@ -5,10 +5,12 @@ import {LoginComponent} from './modules/login/login.component';
 import {RegisterComponent} from './modules/register/register.component';
 import {PageNotFoundComponent} from './modules/page-not-found/page-not-found.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import {CreateEventComponent} from './modules/createevent/createevent.component';
 
 
 const routes: Routes = [
   {path: '', component: EventsComponent, canActivate: [AuthGuardService]},
+  {path: 'create', component: CreateEventComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent, },
   { path: '**', component: PageNotFoundComponent },

@@ -5,21 +5,20 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-sm-2 col-md-2">
+      <a mat-raised-button color="accent" class="d-none d-sm-block" [routerLink]="['create']" >Crear Nuevo Evento</a><br>
+    </div>
+  </div>
+  <div class="row">
     <div *ngFor="let event of events" class="col-sm-6 col-md-4">
-      <mat-card class="hand">
+      <mat-card [routerLink]="['athletes/',event.id] "class="hand">
         <mat-card-header>
           <mat-card-title>{{ event.event_name }}</mat-card-title>
           <mat-card-subtitle>{{ event.event_category }}</mat-card-subtitle>
         </mat-card-header>
-
         <img mat-card-image class="card-img-top" [src]="environment.urlImages+(event.thumbnail)" alt="{{ event.event_name }} ">
-        <mat-card-content>
-          <p>Lugar: {{event.event_place}}</p>
-          <p>Dirección: {{event.event_address}}</p>
-          <p>Fecha y Hora de Inicio: {{event.event_initial_date}}</p>
-          <p>Fecha y Hora de Finalización: {{event.event_final_date}}</p>
-          <p>Tipo de Evento: {{event.event_type}}</p>
-        </mat-card-content>
+        <a mat-raised-button class="d-none d-sm-block" [routerLink]="['update']" >Actualizar Evento</a>
+        <a mat-raised-button class="d-none d-sm-block" color="warn" [routerLink]="['delete']" >Borrar Evento</a>
       </mat-card>
     </div>
   </div>
