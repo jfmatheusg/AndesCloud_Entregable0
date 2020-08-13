@@ -12,13 +12,3 @@ urlpatterns = [
 
 ]
 
-
-
-#create-user
-#api-auth
-
-
-
-#get,post events
-
-#get,put,delete events/id

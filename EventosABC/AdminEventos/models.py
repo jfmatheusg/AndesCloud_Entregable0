@@ -2,11 +2,15 @@ import uuid
 import os
 
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.deconstruct import deconstructible
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+
 @deconstructible
 class UploadToPathAndRename(object):
 
@@ -20,7 +24,7 @@ class UploadToPathAndRename(object):
 
 
 class Evento(models.Model):
-    EVENT_TYPES= [
+    EVENT_TYPES = [
         ('CONFERENCE', 'CONFERENCE'),
         ('SEMINAR', 'SEMINAR'),
         ('CONGRESS', 'CONGRESS'),
@@ -31,14 +35,14 @@ class Evento(models.Model):
         ('VIRTUAL', 'VIRTUAL'),
     ]
 
-    id = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     event_name = models.CharField(max_length=200)
-    event_category = models.CharField(max_length=20,choices=EVENT_TYPES)
+    event_category = models.CharField(max_length=20, choices=EVENT_TYPES)
     event_place = models.CharField(max_length=200)
     event_address = models.CharField(max_length=200)
     event_initial_date = models.DateTimeField()
     event_final_date = models.DateTimeField()
-    event_type = models.CharField(max_length=20,choices=EVENT_PLACE)
+    event_type = models.CharField(max_length=20, choices=EVENT_PLACE)
     thumbnail = models.ImageField(upload_to=UploadToPathAndRename('event_thumbnails/'), null=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     creation_time = models.DateTimeField(default=timezone.now, editable=False)

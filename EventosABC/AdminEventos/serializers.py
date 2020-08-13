@@ -1,23 +1,22 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Evento
+from .models import Evento, CustomUser
 
 
 class UserSerializerIn(serializers.ModelSerializer):
     password = serializers.CharField()
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'email', 'password']
 
     def create(self, validated_data):
-        return User.objects.create(**validated_data)
+        return CustomUser.objects.create(**validated_data)
 
 
 class UserSerializerOut(serializers.ModelSerializer):
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'email']
 
 

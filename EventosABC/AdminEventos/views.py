@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .serializers import *
-from .models import Evento
+from .models import Evento, CustomUser
 
 
 @api_view(['POST'])
@@ -52,7 +52,7 @@ class EventView(APIView):
 
     def post(self, request, *args, **kwargs):
         username = Token.objects.get(key=request.auth.key).user
-        userId = User.objects.get(username=username)
+        userId = CustomUser.objects.get(username=username)
         serialized = EventSerializer(data=request.data)
         if serialized.is_valid():
             newEvent = serialized.save(user=userId)
