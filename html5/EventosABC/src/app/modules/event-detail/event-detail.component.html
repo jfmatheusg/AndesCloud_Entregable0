@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <mat-card class="hand">
+      <mat-card-header>
+        <mat-card-title>{{ event.event_name }}</mat-card-title>
+        <mat-card-subtitle>{{ eventCategoriesEnum[event.event_category] }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="card-img-top" [src]="environment.urlImages+(event.thumbnail)" alt="{{ event.event_name }} ">
+      <mat-card-content>
+        <table class="detail">
+          <tr>
+            <th>Lugar del Evento</th>
+            <td>{{event.event_place}}</td>
+          </tr>
+          <tr>
+            <th>Dirección</th>
+            <td>{{event.event_address}}</td>
+          </tr>
+          <tr>
+            <th>Fecha y Hora Inicial</th>
+            <td>{{event.event_initial_date}}</td>
+          </tr>
+          <tr>
+            <th>Fecha y Hora Final</th>
+            <td>{{event.event_final_date}}</td>
+          </tr>
+          <tr>
+            <th>Tipo de Evento</th>
+            <td>{{eventTypesEnum[event.event_type]}}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+      <a mat-raised-button class="d-none d-sm-block" [routerLink]="['../update/',event.id]" >Actualizar Evento</a>
+      <a mat-raised-button class="d-none d-sm-block" color="warn" (click)="deleteEvent(event.id)">Borrar Evento</a>
+    </mat-card>
+  </div>
+</div>

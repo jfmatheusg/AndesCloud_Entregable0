@@ -31,6 +31,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { UpdateEventComponent } from './modules/updateevent/updateevent.component';
 import { FileUploadComponent } from './services/file-upload/file-upload.component';
+import { EventDetailComponent } from './modules/event-detail/event-detail.component';
 
 
 
@@ -46,6 +47,7 @@ import { FileUploadComponent } from './services/file-upload/file-upload.componen
     CreateEventComponent,
     UpdateEventComponent,
     FileUploadComponent,
+    EventDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,6 @@ export class EventsComponent implements OnInit {
   environment = environment;
   eventCategoriesEnum = EventsCategoriesEnum;
   eventTypesEnum = EventsTypesEnum;
-  detail = false;
   labelDetalle = 'Detalle Evento';
 
   constructor(
@@ -24,11 +23,6 @@ export class EventsComponent implements OnInit {
     this.eventsService.getAllEvents().subscribe(events => {
       this.events = events;
     });
-  }
-
-  onClick() {
-    this.detail = !this.detail;
-    if (this.detail) { this.labelDetalle = 'Ocultar Detalle'; } else { this.labelDetalle = 'Detalle Evento'; }
   }
 
   deleteEvent(idEvent) {

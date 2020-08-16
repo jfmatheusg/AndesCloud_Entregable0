@@ -5,7 +5,6 @@ import {EventsCategoriesEnum, EventsTypesEnum} from '../../enums/events.enum';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventsService} from '../../services/events.service';
 import {ErrorRestService} from '../../services/error-rest/error-rest.service';
-import {EventInterface} from '../../interfaces/events.interface';
 import {first} from 'rxjs/operators';
 
 @Component({

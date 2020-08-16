@@ -17,7 +17,7 @@
           <mat-card-subtitle>{{ eventCategoriesEnum[event.event_category] }}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image class="card-img-top" [src]="environment.urlImages+(event.thumbnail)" alt="{{ event.event_name }} ">
-        <mat-card-content *ngIf="detail">
+        <mat-card-content *ngIf="false">
           <table class="detail">
             <tr>
               <th>Lugar del Evento</th>
@@ -41,7 +41,7 @@
             </tr>
           </table>
         </mat-card-content>
-        <a mat-raised-button class="d-none d-sm-block" (click)="onClick()">{{labelDetalle}}</a>
+        <a mat-raised-button class="d-none d-sm-block" [routerLink]="['/',event.id]" >{{labelDetalle}}</a>
         <a mat-raised-button class="d-none d-sm-block" [routerLink]="['update/',event.id]" >Actualizar Evento</a>
         <a mat-raised-button class="d-none d-sm-block" color="warn" (click)="deleteEvent(event.id)">Borrar Evento</a>
       </mat-card>
