@@ -28,7 +28,9 @@ import { CreateEventComponent } from './modules/createevent/createevent.componen
 import {MatSelectModule} from '@angular/material/select';
 import {NgxMatDatetimePickerModule} from '@angular-material-components/datetime-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule} from '@angular/material/core';
+import { UpdateEventComponent } from './modules/updateevent/updateevent.component';
+import { FileUploadComponent } from './services/file-upload/file-upload.component';
 
 
 
@@ -42,6 +44,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     RegisterComponent,
     PageNotFoundComponent,
     CreateEventComponent,
+    UpdateEventComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

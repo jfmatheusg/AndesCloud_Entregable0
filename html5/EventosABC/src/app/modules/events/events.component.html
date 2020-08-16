@@ -5,20 +5,45 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-2 col-md-2">
+    <div class="col-sm-6 col-md-4">
       <a mat-raised-button color="accent" class="d-none d-sm-block" [routerLink]="['create']" >Crear Nuevo Evento</a><br>
     </div>
   </div>
   <div class="row">
     <div *ngFor="let event of events" class="col-sm-6 col-md-4">
-      <mat-card [routerLink]="['athletes/',event.id] "class="hand">
+      <mat-card class="hand">
         <mat-card-header>
           <mat-card-title>{{ event.event_name }}</mat-card-title>
-          <mat-card-subtitle>{{ event.event_category }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ eventCategoriesEnum[event.event_category] }}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image class="card-img-top" [src]="environment.urlImages+(event.thumbnail)" alt="{{ event.event_name }} ">
-        <a mat-raised-button class="d-none d-sm-block" [routerLink]="['update']" >Actualizar Evento</a>
-        <a mat-raised-button class="d-none d-sm-block" color="warn" [routerLink]="['delete']" >Borrar Evento</a>
+        <mat-card-content *ngIf="detail">
+          <table class="detail">
+            <tr>
+              <th>Lugar del Evento</th>
+              <td>{{event.event_place}}</td>
+            </tr>
+            <tr>
+              <th>Dirección</th>
+              <td>{{event.event_address}}</td>
+            </tr>
+            <tr>
+              <th>Fecha y Hora Inicial</th>
+              <td>{{event.event_initial_date}}</td>
+            </tr>
+            <tr>
+              <th>Fecha y Hora Final</th>
+              <td>{{event.event_final_date}}</td>
+            </tr>
+            <tr>
+              <th>Tipo de Evento</th>
+              <td>{{eventTypesEnum[event.event_type]}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <a mat-raised-button class="d-none d-sm-block" (click)="onClick()">{{labelDetalle}}</a>
+        <a mat-raised-button class="d-none d-sm-block" [routerLink]="['update/',event.id]" >Actualizar Evento</a>
+        <a mat-raised-button class="d-none d-sm-block" color="warn" (click)="deleteEvent(event.id)">Borrar Evento</a>
       </mat-card>
     </div>
   </div>

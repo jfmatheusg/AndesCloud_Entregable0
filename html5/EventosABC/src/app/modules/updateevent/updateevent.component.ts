@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {EventTypeInterface} from '../../interfaces/events.interface';
+import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EventsCategoriesEnum, EventsTypesEnum} from '../../enums/events.enum';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventInterface} from '../../interfaces/events.interface';
-import {first} from 'rxjs/operators';
 import {EventsService} from '../../services/events.service';
 import {ErrorRestService} from '../../services/error-rest/error-rest.service';
-import {EventsCategoriesEnum, EventsTypesEnum} from '../../enums/events.enum';
+import {EventInterface} from '../../interfaces/events.interface';
+import {first} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-createevent',
-  templateUrl: './createevent.component.html',
-  styleUrls: ['./createevent.component.css']
+  selector: 'app-updateevent',
+  templateUrl: './updateevent.component.html',
+  styleUrls: ['./updateevent.component.css']
 })
-export class CreateEventComponent implements OnInit {
-  createEventForm: FormGroup;
+export class UpdateEventComponent implements OnInit {
+  updateEventForm: FormGroup;
   loading = false;
+  event: any = {};
+  environment = environment;
   submitted = false;
   returnUrl: string;
   thumbnail: any;
@@ -23,6 +25,7 @@ export class CreateEventComponent implements OnInit {
   eventCategories = [];
   eventTypesEnum = EventsTypesEnum;
   eventTypes = [];
+  idEvent: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,10 +36,12 @@ export class CreateEventComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.idEvent = this.route.snapshot.params.pk;
+
     this.eventCategories = Object.keys(this.eventCategoriesEnum);
     this.eventTypes = Object.keys(this.eventTypesEnum);
 
-    this.createEventForm = this.formBuilder.group({
+    this.updateEventForm = this.formBuilder.group({
       event_name: ['', Validators.required],
       event_category: ['', Validators.required],
       event_place: ['', Validators.required],
@@ -44,16 +49,28 @@ export class CreateEventComponent implements OnInit {
       event_initial_date: ['', Validators.required],
       event_final_date: ['', Validators.required],
       event_type: ['', Validators.required],
-      thumbnail: ['', Validators.required]
     });
+
+    this.eventsService.getEvent(this.idEvent).subscribe(event => {
+      this.event = event;
+      this.event.event_initial_date = this.event.event_initial_date.replace('Z', '');
+      this.event.event_final_date = this.event.event_final_date.replace('Z', '');
+      this.updateEventForm.setValue({
+        event_name: this.event.event_name,
+        event_category: this.event.event_category,
+        event_place: this.event.event_place,
+        event_address: this.event.event_address,
+        event_initial_date: this.event.event_initial_date,
+        event_final_date: this.event.event_final_date,
+        event_type: this.event.event_type,
+      });
+    });
+
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
-  selectFile(event) {
-    this.thumbnail = event.target.files;
-  }
 
   getErrorMessage(field) {
     const obj = this.f[field];
@@ -61,21 +78,19 @@ export class CreateEventComponent implements OnInit {
         '';
   }
 
-  get f() { return this.createEventForm.controls; }
+  get f() { return this.updateEventForm.controls; }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.createEventForm.invalid) {
+    if (this.updateEventForm.invalid) {
       return;
     }
 
-    const newEventData: EventInterface = this.createEventForm.value;
-    newEventData.thumbnail = this.thumbnail.item(0);
 
     this.loading = true;
     this.eventsService
-      .createEvent(newEventData)
+      .updateEvent(this.updateEventForm.value, this.idEvent)
       .pipe(first())
       .subscribe(
         data => {

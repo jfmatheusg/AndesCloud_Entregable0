@@ -25,14 +25,14 @@ class UploadToPathAndRename(object):
 
 class Evento(models.Model):
     EVENT_TYPES = [
-        ('CONFERENCE', 'CONFERENCE'),
-        ('SEMINAR', 'SEMINAR'),
-        ('CONGRESS', 'CONGRESS'),
-        ('CURSE', 'CURSE')
+        ('CONFERENCE', 'Conferencia'),
+        ('SEMINAR', 'Seminario'),
+        ('CONGRESS', 'Congreso'),
+        ('CURSE', 'Curso')
     ]
     EVENT_PLACE = [
-        ('PRESENCIAL', 'PRESENCIAL'),
-        ('VIRTUAL', 'VIRTUAL'),
+        ('PRESENCIAL', 'Presencial'),
+        ('VIRTUAL', 'Virtual'),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

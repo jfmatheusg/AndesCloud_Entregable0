@@ -20,3 +20,4 @@ export interface EventInterface {
     event_type: string;
     thumbnail: any;
 }
+

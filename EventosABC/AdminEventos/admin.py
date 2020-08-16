@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from AdminEventos.models import Evento
+from .models import Evento,CustomUser
 
 # Register your models here.
-Models = [Evento]
+Models = [Evento, CustomUser]
 admin.site.register(Models)
