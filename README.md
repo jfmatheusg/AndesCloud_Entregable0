@@ -1,4 +1,11 @@
-# AndesCloud_Entregable0
+# Cloud UniAndes - Proyecto 0
+
+Esta aplicación utiliza postgresql como base de datos, django como servidor de backend y angular para el frontend.
+
+## DB
+```
+docker-compose -f psql.yml up -d
+```
 
 ## Front End
 ```
