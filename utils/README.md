@@ -3,13 +3,11 @@
 ## Prerrequisitos
 * Docker
 * Docker compose
-* Crear las carpetas kafka, zookeper y psql de acuerdo a las rutas configuradas en los volumenes de los archivos YML
+* Crear la carpeta psql de acuerdo a la ruta configurada en el volumen del archivo YML
 
-## Descarga de Imagenes Docker
+## Descarga de Imagen Docker
 
 ```
-docker pull bitnami/kafka:latest
-
 docker pull bitnami/postgresql:latest
 ```
 
@@ -18,21 +16,11 @@ docker pull bitnami/postgresql:latest
 Correr los siguientes comandos en esta ruta:
 
 ```
-docker-compose -f kafka.yml up -d
 docker-compose -f psql.yml up -d
 ```
 
 Verificar que los contenedores hayan levantado bien:
 
 ```
-docker ps
-```
-
-## Creación tópicos
-
-Correr el script _kafka_createtopics.sh_. Se debe obtener la siguiente salida:
-
-```
-Created topic OfertaTopic.
-Created topic DemandaTopic.
+docker ps -a
 ```
