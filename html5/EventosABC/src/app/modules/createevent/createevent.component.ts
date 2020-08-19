@@ -43,6 +43,8 @@ export class CreateEventComponent implements OnInit {
       event_address: ['', Validators.required],
       event_initial_date: ['', Validators.required],
       event_final_date: ['', Validators.required],
+      event_initial_time: ['', Validators.required],
+      event_final_time: ['', Validators.required],
       event_type: ['', Validators.required],
       thumbnail: ['', Validators.required]
     });
@@ -71,6 +73,12 @@ export class CreateEventComponent implements OnInit {
     }
 
     const newEventData: EventInterface = this.createEventForm.value;
+    newEventData.event_final_date = String(this.createEventForm.controls.event_final_date.value) + 'T'
+                                      + String(this.createEventForm.controls.event_final_time.value);
+    newEventData.event_initial_date = String(this.createEventForm.controls.event_initial_date.value) + 'T'
+                                      + String(this.createEventForm.controls.event_initial_time.value);
+
+    console.log(newEventData.event_final_date);
     newEventData.thumbnail = this.thumbnail.item(0);
 
     this.loading = true;

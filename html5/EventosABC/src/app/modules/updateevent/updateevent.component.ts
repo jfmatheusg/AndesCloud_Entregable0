@@ -47,13 +47,18 @@ export class UpdateEventComponent implements OnInit {
       event_address: ['', Validators.required],
       event_initial_date: ['', Validators.required],
       event_final_date: ['', Validators.required],
+      event_initial_time: ['', Validators.required],
+      event_final_time: ['', Validators.required],
       event_type: ['', Validators.required],
     });
 
     this.eventsService.getEvent(this.idEvent).subscribe(event => {
       this.event = event;
-      this.event.event_initial_date = this.event.event_initial_date.replace('Z', '');
-      this.event.event_final_date = this.event.event_final_date.replace('Z', '');
+      this.event.event_initial_time = this.event.event_initial_date.substr(11,5);
+      this.event.event_final_time = this.event.event_final_date.substr(11, 5);
+      this.event.event_initial_date = this.event.event_initial_date.substring(0, 10);
+      this.event.event_final_date = this.event.event_final_date.substring(0, 10);
+
       this.updateEventForm.setValue({
         event_name: this.event.event_name,
         event_category: this.event.event_category,
@@ -61,6 +66,8 @@ export class UpdateEventComponent implements OnInit {
         event_address: this.event.event_address,
         event_initial_date: this.event.event_initial_date,
         event_final_date: this.event.event_final_date,
+        event_initial_time: this.event.event_initial_time,
+        event_final_time: this.event.event_final_time,
         event_type: this.event.event_type,
       });
     });
@@ -86,6 +93,10 @@ export class UpdateEventComponent implements OnInit {
       return;
     }
 
+    this.updateEventForm.controls.event_final_date.setValue( String(this.updateEventForm.controls.event_final_date.value) + 'T'
+                                      + String(this.updateEventForm.controls.event_final_time.value));
+    this.updateEventForm.controls.event_initial_date.setValue(String(this.updateEventForm.controls.event_initial_date.value) + 'T'
+                                      + String(this.updateEventForm.controls.event_initial_time.value));
 
     this.loading = true;
     this.eventsService

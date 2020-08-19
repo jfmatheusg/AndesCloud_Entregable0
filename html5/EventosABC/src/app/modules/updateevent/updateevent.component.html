@@ -43,16 +43,34 @@
             </div>
             <div class="form-group">
               <mat-form-field appearance="standard">
-                <mat-label>Fecha y Hora de Inicio {{event.event_initial_date}}</mat-label>
-                <input matInput type="datetime-local" value="{{event.event_initial_date}}" formControlName="event_initial_date">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput type="date" value="{{event.event_initial_date}}" formControlName="event_initial_date">
+                <mat-icon matSuffix>date_range</mat-icon>
                 <mat-error>{{getErrorMessage('event_initial_date')}}</mat-error>
               </mat-form-field>
             </div>
             <div class="form-group">
               <mat-form-field appearance="standard">
-                <mat-label>Fecha y Hora de Finalización</mat-label>
-                <input matInput type="datetime-local" value="{{event.event_final_date}}"  formControlName="event_final_date">
+                <mat-label>Hora de Inicio</mat-label>
+                <input matInput type="time" value="{{event.event_initial_time}}" formControlName="event_initial_time">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <mat-error>{{getErrorMessage('event_initial_time')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field appearance="standard">
+                <mat-label>Fecha de Finalización</mat-label>
+                <input matInput type="date" value="{{event.event_final_date}}"  formControlName="event_final_date">
+                <mat-icon matSuffix>date_range</mat-icon>
                 <mat-error>{{getErrorMessage('event_final_date')}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field appearance="standard">
+                <mat-label>Hora de Finalización</mat-label>
+                <input matInput type="time" value="{{event.event_final_time}}"  formControlName="event_final_time">
+                <mat-icon matSuffix>access_time</mat-icon>
+                <mat-error>{{getErrorMessage('event_final_time')}}</mat-error>
               </mat-form-field>
             </div>
             <div class="form-group">
