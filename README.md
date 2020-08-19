@@ -16,6 +16,14 @@ ng serve --host 0.0.0.0 -- port <port>
 ## Back End
 ```
 pipenv shell
-pipenv install
+pipenv instal
+```
+Si es la primera vez que se va a iniciar el backend se deben correr los siguientes comandos:
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+Para subir el servidor se ejecuta este comando:
+```
 python3 manage.py runserver 0.0.0.0:8080
 ```
