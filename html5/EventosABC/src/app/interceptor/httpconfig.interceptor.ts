@@ -31,20 +31,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         if ([400, 401].indexOf(error.status) != -1) {
           return throwError(error);
         }
-        let data = {};
-        if (error.status === 404) {
-          data = {
-            reason: 'El usuario no tiene eventos en el sistema',
-            status: error.status
-          };
-        } else {
-          data = {
-              reason: error && error.error && error.error.reason ? error.error.reason : error.message,
-              status: error.status
-          };
-        }
-
-        this.errorDialogService.openDialog(data);
         return throwError(error);
       }));
   }

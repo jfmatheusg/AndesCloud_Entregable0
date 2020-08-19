@@ -83,7 +83,13 @@
                 <mat-error>{{getErrorMessage('event_type')}}</mat-error>
               </mat-form-field>
             </div>
+            <div>
+              <mat-label>Imagen Actual</mat-label>
+              <img mat-card-image class="card-img-top" [src]="environment.urlImages+(event.thumbnail)" alt="{{ event.event_name }} ">
+              <app-file-upload formControlName="thumbnail"></app-file-upload>
+            </div>
           </mat-card-content>
+
           <mat-card-actions class="text-right">
             <button [disabled]="loading" mat-raised-button color="primary" class="btn-block-xs">Actualizar Evento</button>
             <img *ngIf="loading"

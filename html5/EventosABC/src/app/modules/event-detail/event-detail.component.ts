@@ -4,6 +4,7 @@ import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventsService} from '../../services/events.service';
 import {EventsCategoriesEnum, EventsTypesEnum} from '../../enums/events.enum';
+import {ErrorRestService} from '../../services/error-rest/error-rest.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -22,13 +23,20 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eventsService: EventsService,
+    public errorDialogService: ErrorRestService
   ) { }
 
   ngOnInit(): void {
     this.idEvent = this.route.snapshot.params.pk;
-    this.eventsService.getEvent(this.idEvent).subscribe(event => {
+    const subscription = this.eventsService.getEvent(this.idEvent).subscribe(event => {
       this.event = event;
-    });
+    }, error => {
+      console.log(error)
+      const status = error.status;
+      let reason = ''
+      if (status === 401) {reason = 'El usuario no tiene permisos para ver este evento'};
+      if (status === 404) {reason = 'El evento buscado no existe en el sistema'};
+      this.errorDialogService.openDialog({status, reason}, resolve => {this.router.navigate(['../']); }); });
   }
 
     deleteEvent(idEvent) {

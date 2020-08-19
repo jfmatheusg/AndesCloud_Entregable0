@@ -53,8 +53,10 @@ export class EventsService {
 
     for ( const key of Object.keys(formValue) ) {
       const value = formValue[key];
-      formData.append(key, value);
+      if (value) {formData.append(key, value); };
+
     }
+    console.log(formData.get('thumbnail'));
     return formData;
   }
 }

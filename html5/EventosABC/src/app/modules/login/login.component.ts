@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
               reason: 'Su usuario o contraseña son incorrectos',
               status: '400'
           };
-          this.errorDialogService.openDialog(data);
+          this.errorDialogService.openDialog(data, resolve => {});
         });
   }
 

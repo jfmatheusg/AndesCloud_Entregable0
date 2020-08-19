@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
               reason: 'Su registro no fue exitoso. Reintente más tarde o contacte a soporte técnico',
               status: '500'
           };
-          this.errorDialogService.openDialog(data);
+          this.errorDialogService.openDialog(data, resolve => {});
         }
       );
   }

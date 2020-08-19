@@ -41,7 +41,11 @@ class EventView(APIView):
                 event = Evento.objects.get(user=username, id=idEvent)
                 return Response(EventSerializer(event).data, status=status.HTTP_200_OK)
             except:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+                try:
+                    if username != Evento.objects.get(id=idEvent).user:
+                        return Response(status=status.HTTP_401_UNAUTHORIZED)
+                except:
+                    return Response(status=status.HTTP_404_NOT_FOUND)
         else:
             events = Evento.objects.filter(user=username).order_by('-creation_time')
             if events:
@@ -70,12 +74,16 @@ class EventView(APIView):
             except:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             for key, value in serialized.data.items():
+                if key == 'thumbnail':
+                    event.thumbnail = request.data['thumbnail']
+                    continue
                 setattr(event, key, value)
             event.save()
             event = EventSerializer(event)
             return Response(event.data, status=status.HTTP_200_OK)
         else:
             if idEvent:
+                print(serialized.errors)
                 return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({'response': 'No Event ID supplied in the request'}, status=status.HTTP_400_BAD_REQUEST)

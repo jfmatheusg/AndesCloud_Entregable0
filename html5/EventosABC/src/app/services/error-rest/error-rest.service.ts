@@ -6,7 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 export class ErrorRestService {
 
   constructor(public dialog: MatDialog) { }
-  openDialog(data): void {
+  openDialog(data, resolve): void {
     const dialogRef = this.dialog.open(ErrorRestComponent, {
       width: '300px',
       data: data
@@ -14,6 +14,7 @@ export class ErrorRestService {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      resolve();
     });
   }
 }
