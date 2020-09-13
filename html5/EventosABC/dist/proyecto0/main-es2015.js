@@ -3164,8 +3164,8 @@
             // The list of file replacements can be found in `angular.json`.
             const environment = {
                 production: false,
-                apiUrl: 'http://172.31.84.221:8081/api',
-                urlImages: 'http://172.31.84.221:8081',
+                apiUrl: 'http://54.86.191.252:8081/api',
+                urlImages: 'http://54.86.191.252:8081',
             };
             /*
              * For easier debugging in development mode, you can import the following file
