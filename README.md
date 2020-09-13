@@ -16,7 +16,7 @@ ng serve --host 0.0.0.0 -- port <port>
 ## Back End
 ```
 pipenv shell
-pipenv instal
+pipenv install
 ```
 Si es la primera vez que se va a iniciar el backend se deben correr los siguientes comandos:
 ```
