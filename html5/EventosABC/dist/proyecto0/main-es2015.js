@@ -91,7 +91,8 @@
                 ]
             });
             (function() {
-                (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] }); })();
+                (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] });
+            })();
             /*@__PURE__*/
             (function() {
                 _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
@@ -3163,8 +3164,8 @@
             // The list of file replacements can be found in `angular.json`.
             const environment = {
                 production: false,
-                apiUrl: 'http://172.31.84.221:8080/api',
-                urlImages: 'http://172.31.84.221:8080',
+                apiUrl: 'http://172.31.84.221:8081/api',
+                urlImages: 'http://172.31.84.221:8081',
             };
             /*
              * For easier debugging in development mode, you can import the following file

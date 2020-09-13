@@ -1,7 +1,12 @@
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i];
+function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
         descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor); } }
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
@@ -5173,8 +5178,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             var environment = {
                 production: false,
-                apiUrl: 'http://172.31.84.221:8080/api',
-                urlImages: 'http://172.31.84.221:8080'
+                apiUrl: 'http://172.31.84.221:8081/api',
+                urlImages: 'http://172.31.84.221:8081'
             };
             /*
              * For easier debugging in development mode, you can import the following file
